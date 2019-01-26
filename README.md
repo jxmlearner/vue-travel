@@ -10,3 +10,7 @@
 6. 参照微信小程序使用pages目录代表各个页面,页面目录下再有components
 7. vue-cli下@代表src目录, 在样式引入时要加上~符号,如 `@import '~@/assets/css/stylus/variable.styl'`
 
+## 二、`vue-awesome-swiper`使用
+1. github上创建一个分支 
+  - `git checkout -b index-swiper` --创建并切换到分支, 这个命令相当于 `git branch index-swiper`和`git checkout index-swiper`两个命令
+1. 安装 `yarn add vue-awesome-swiper`

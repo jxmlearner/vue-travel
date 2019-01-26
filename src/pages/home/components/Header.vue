@@ -37,11 +37,11 @@
     .head-search {
         flex: 1;
         height: 100%;
-        padding: .1rem;
+        padding: .14rem;
         .search-input {
             display: block;
             height: 100%;
-            line-height: .68rem;
+            line-height: .6rem;
             padding: 0 .2rem;
             color: #e4e7ea;
             border-radius: .08rem;

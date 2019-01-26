@@ -22,7 +22,7 @@
 @import '~@/assets/css/stylus/variable.styl'
 .header {
     height: .88rem;   //计算方式： 如44px   44*2/100 = 0.88rem
-    background: $color;
+    background: $bgcolor;
     color: #fff;
     display: flex;
     align-items: center;

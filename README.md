@@ -25,13 +25,10 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
 ```javascript
 <template>
     <div class="swiper-box">
-        <swiper :options="swiperOption" ref="swiperDom">
+        <swiper v-if="swiperList && swiperList.length>0" :options="swiperOption" ref="swiperDom">
             <!-- slides -->
-            <swiper-slide>
-                <img src="http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20191/854b2a57bf7025a0f7c639514665dfe4.jpg_750x200_08fdbadb.jpg" class="swiper-img">            
-            </swiper-slide>
-            <swiper-slide>
-                <img src="http://img1.qunarzz.com/piao/fusion/1809/61/44400d6591891202.jpg_750x200_7565a05c.jpg" class="swiper-img">
+            <swiper-slide v-for="(item,index) of swiperList" :key="item.id">
+                <img :src="item.imgUrl" class="swiper-img">            
             </swiper-slide>
             <!-- Optional controls -->
             <div class="swiper-pagination" slot="pagination"></div>
@@ -46,12 +43,15 @@ export default {
         return  {
             swiperOption: {
                 autoplay:true,
-                loop: true,
-                // 如果需要分页器
-                pagination: {
+                loop: true,                
+                pagination: { // 如果需要分页器
                     el: '.swiper-pagination'                    
-                },
-            }
+                }
+            },
+            swiperList: [
+                { id: 1, title:'欢乐谷', imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20191/854b2a57bf7025a0f7c639514665dfe4.jpg_750x200_08fdbadb.jpg'},
+                { id: 2, title:'东部华侨城', imgUrl: 'http://img1.qunarzz.com/piao/fusion/1809/61/44400d6591891202.jpg_750x200_7565a05c.jpg'}
+            ]
         }
     },
     computed: {
@@ -74,9 +74,73 @@ export default {
     height: 0;
     overflow: hidden;
     padding-bottom: 26.667%;
+    background-color: #eee;
 }
 .swiper-img {
     width: 100%;
 }
 </style>
+```
+5. 构造swiper的分页数据
+```javascript
+<script>
+    export default {
+        data() {
+            return {
+                swiperOption: {              
+                    pagination: { // 如果需要分页器
+                        el: '.swiper-pagination'                    
+                    }
+                },
+                iconList: [
+                    {id:'0001',title:'景点门票',imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',},
+                    {id:'0002',title:'一日游',imgUrl:'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png',},
+                    {id:'0003',title:'深圳必游',imgUrl:'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',},
+                    {id:'0004',title:'海洋馆',imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/50/26ffa31b56646402.png',},
+                    {id:'0005',title:'动植物园',imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png',},
+                    {id:'0006',title:'泡温泉',imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/ab/6f7d6e44963c9302.png',},
+                    {id:'0007',title:'世界之窗',imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/a6/6d97515091789602.png',},
+                    {id:'0008',title:'滑雪秀',imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/fc/b10a6b2e4f0fe102.png',},
+                    {id:'0009',title:'东部华侨城',imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/b6/37560ece9c62b502.png',}
+                ]
+            }
+        },
+        computed: {
+            pages() {
+                let pages = []
+                this.iconList.forEach((icon,index)=> {
+                    const page = Math.floor(index/8)
+                    if(!pages[page]) {
+                        pages[page] = []
+                    }
+                    pages[page].push(icon)
+                })
+                return pages
+            }
+        }
+    }
+</script>
+```
+## 三、stylus使用记录
+1. 定义和使用mixin
+```css
+ellipsis()  //定义
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+// 使用
+@import '~@/assets/css/stylus/mixins.styl'
+
+.icon-tit {
+    position: absolute;
+    left:0;
+    right: 0;
+    bottom: 0;
+    line-height: .44rem;
+    height: .44rem;
+    color: $darkTextColor;
+    text-align: center;
+    ellipsis()
+}
 ```

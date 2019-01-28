@@ -297,7 +297,7 @@ module.exports = {
 }
 ```
 
-## `vue-router`使用
+## 五、`vue-router`使用
 1. 安装 `yarn add vue-router`
 2. `src/router/routes.js`
 ```javascript

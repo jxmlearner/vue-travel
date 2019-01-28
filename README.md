@@ -144,3 +144,8 @@ ellipsis()  //定义
     ellipsis()
 }
 ```
+2. 1像素边框     
+[参考](https://segmentfault.com/a/1190000009279775)     
+- 页面上要使用border-1px类,如`<div class="mp-like-item border-1px"></div>`
+- 元素的样式上要使用 border-1px 的mixin 如： border-1px(#ccc)
+- 同时要事先定义好 `.border-1px`的媒体查询

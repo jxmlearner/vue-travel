@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <home-header />
-        <home-swiper />
+        <home-swiper :swiperList="swiperList" />
         <home-icons :iconList='iconList' />
         <home-recommend :likeList='likeList' />
         <home-weekend :weekendList='weekendList' />
@@ -20,6 +20,7 @@
     export default {
         data() {
             return {
+                swiperList:[],
                 iconList:[],
                 likeList:[],
                 weekendList:[]
@@ -32,6 +33,7 @@
             async getHomeInfo() {
                 let res = await HomeApi.getHomeInfo()
                 let data = res.data
+                this.swiperList = data.swiperList
                 this.iconList = data.iconList //因为只是单纯的本地json数据,对返回没作判断,真实的生产环境数据可能还要判断返回的code正确与否
                 this.likeList = data.likeList
                 this.weekendList = data.weekendList

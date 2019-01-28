@@ -6,9 +6,9 @@
                 <i class="icon iconfont icon-sousuo"></i>输入城市/景点/游玩主题
             </a>
         </div>
-        <a class="head-city">
+        <router-link class="head-city" to="/city">
             <span>深圳<i class="icon iconfont icon-caret-down"></i></span>   
-        </a>
+        </router-link>
     </div>
 </template>
 
@@ -21,14 +21,14 @@
 <style scoped lang="stylus">
 @import '~@/assets/css/stylus/variable.styl'
 .header {
-    height: .88rem;   //计算方式： 如44px   44*2/100 = 0.88rem
+    height: $headerHeight;   //计算方式： 如44px   44*2/100 = 0.88rem
     background: $bgcolor;
     color: #fff;
     display: flex;
     align-items: center;
     .back {
         width: .8rem;
-        line-height: .88rem;
+        line-height: $headerHeight;
         padding: 0 .2rem;
         font-size: .36rem;
         text-align: left;
@@ -52,6 +52,7 @@
     .head-city {
         padding: 0 .1rem;
         cursor: pointer;
+        color: #fff;
         i {
             margin-left: .04rem;
             font-size: .24rem;

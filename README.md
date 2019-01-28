@@ -299,3 +299,47 @@ module.exports = {
 
 ## `vue-router`使用
 1. 安装 `yarn add vue-router`
+2. `src/router/routes.js`
+```javascript
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../pages/home/Home'
+import City from '../pages/city/City'
+
+Vue.use(VueRouter)
+
+const routes = [
+    { path: '/', name: 'home', component:Home},
+    { path: '/city', name: 'city', component:City},
+]
+
+const router = new VueRouter({
+    mode: 'history',
+    routes
+})
+
+export default router
+```
+3. `main.js`中要注入路由
+```javascript
+import router from './router/routes'
+
+new Vue({
+  router,
+  render: h => h(App),
+}).$mount('#app')
+```
+4. `App.vue`修改成使用路由插座
+```javascript
+<template>
+	<div id="app">
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+export default {
+	name: 'app'
+}
+</script>
+```

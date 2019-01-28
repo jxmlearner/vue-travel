@@ -19,10 +19,13 @@
     export default {
         data() {
             return {
-                weekendList: [
-                    {id: '0001', title: '清远周边逛', imgUrl:'http://img1.qunarzz.com/sight/source/1811/15/66f14e0fd6fbb.jpg_r_640x214_5d69f21d.jpg',desc:'人人都有一双发现美的眼睛，身边的事物最熟悉不过，那你可曾发现了被人遗漏的美？'},
-                    {id: '0002', title: '浮在海上的绿洲', imgUrl:'http://img1.qunarzz.com/sight/source/1811/b8/5d599bbdcf8b57.jpg_r_640x214_2ee055e3.jpg',desc:'南国滨海之城，避寒胜地，有暖暖的阳光，海风习习，吃着海鲜逛逛老街多惬意啊'},
-                ]
+                
+            }
+        },
+        props: {
+            weekendList: {
+                type: Array,
+                default: function() { return [] }
             }
         }
     }

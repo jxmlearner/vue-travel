@@ -30,16 +30,17 @@
 
 <script>
     export default {
-        name: 'HomeRecommend',
+        name: 'HomeRecommend',        
         data() {
             return {
-                likeList: [
-                    {id: '0001', title: '深圳野生动物园', imgUrl:'http://img1.qunarzz.com/sight/p0/1508/2e/d9363ce50a88c8c5ff5a138c67687cd4.water.jpg_200x200_1c15c8f5.jpg', 
-                    commentNum:16129, price:155, stars:5, area:'小梅沙'},
-                    {id: '0002', title: '八达岭长城', imgUrl:'http://img1.qunarzz.com/sight/p0/1708/2b/2b3b94de99c0a425a3.img.jpg_200x200_2458ffb2.jpg', 
-                    commentNum:44155, price:157.5, stars:4, area:'延庆县'}
-                ]
+                
             }            
+        },
+        props: {
+            likeList: {
+                type: Array,
+                default: function() { return [] }
+            }
         }
     }
 </script>

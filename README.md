@@ -149,3 +149,153 @@ ellipsis()  //定义
 - 页面上要使用border-1px类,如`<div class="mp-like-item border-1px"></div>`
 - 元素的样式上要使用 border-1px 的mixin 如： border-1px(#ccc)
 - 同时要事先定义好 `.border-1px`的媒体查询
+
+## 四、引入`axios`获取数据
+1. 安装 `yarn add axios qs`
+2. src目录下定义一个配置文件`config.js`
+```javascript
+let env = process.env.NODE_ENV || 'development'
+let apiAddr
+
+if(env === 'production') {  //生产环境
+    apiAddr = 'http://localhost:5000/api/'
+} else if(env === 'development') {  //开发环境
+    apiAddr ='/api/'
+}
+
+export default config = {
+    apiAddr
+}
+```
+3. 编写`src/utils/http.js`辅助  [更多内容可参考](https://gitee.com/jxmlearner/vue-manage)
+```javascript
+import Qs from 'qs'
+import axios from 'axios'
+import {apiAddr} from '../config'
+//import router from '../router'
+
+// 自定义axios实例
+let instance = axios.create()
+
+instance.defaults.baseURL = apiAddr;
+
+instance.defaults.timeout = 20000;
+
+// 自动发送cookie中的认证信息
+instance.defaults.withCredentials = true;
+
+instance.defaults.transformRequest = [function (data) {
+    data = Qs.stringify(data)
+    return data
+}]
+
+// instance.defaults.transformResponse = [function (data) {
+//     data = JSON.parse(data)
+//     return data
+// }]
+
+// http request 拦截器
+// 每次请求都为http头增加Authorization字段，其内容为token
+instance.interceptors.request.use(
+    config => {
+        // if(!/login|registe/.test(config.url)){   //登录注册页不用在header中增加token
+        //     const token=sessionStorage.getItem('token')
+        //     config.headers.Authorization = `Bearer ${token}`
+        // }        
+        return config
+    }, error => {
+        return Promise.reject(error)
+    }
+);
+
+instance.interceptors.response.use((res) => {
+    // 对于任何接口请求行为, API 服务会确认认证信息
+    // 当认证信息不存在时, API 服务会返回未认证消息,
+    // 对于这种情况, 在此处做统一的拦截处理, 重定向到登录页
+    if (res.data.code === 401) {
+        console.log('登录失效, 请重新登录!')
+        //router.push('/login')
+    }
+    return res;
+}, (error) => {
+    console.log("请求错误")
+    return Promise.reject(error)
+});
+
+export default instance
+```
+4. 编写获取数据的api, 以 `src/HomeApi.js`为例：
+```javascript
+import axios from '../utils/http'
+
+async function getHomeInfo() {
+    return await axios.get('index.json')
+}
+
+export default {
+    getHomeInfo
+}
+```
+5. `Home.vue`中使用上面的api
+```javascript
+/*
+    <home-icons :iconList='iconList' />
+    <home-recommend :likeList='likeList' />
+    <home-weekend :weekendList='weekendList' />
+*/
+import HomeApi from '@/API/HomeApi'
+
+export default {
+    data() {
+        return {
+            iconList:[],
+            likeList:[],
+            weekendList:[]
+        }
+    },
+    mounted() {
+        this.getHomeInfo()
+    },
+    methods: {
+        async getHomeInfo() {
+            let res = await HomeApi.getHomeInfo()
+            let data = res.data  
+            this.iconList = data.iconList //因为只是单纯的本地json数据,对返回没作判断,真实的生产环境数据可能还要判断返回的code正确与否
+            this.likeList = data.likeList
+            this.weekendList = data.weekendList
+        }
+    },
+    components: {
+        HomeHeader,
+        HomeSwiper,
+        HomeIcons,
+        HomeRecommend,
+        HomeWeekend
+    }
+}
+```
+6. 组件中要定义props来接收数据
+```javascript
+props: {
+    iconList: {
+        type: Array,
+        default: function() { return [] }
+    }
+},
+```
+7. 在`vue.config.js`文件中配置了本地开发代理
+```javascript
+module.exports = {
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8081/',
+                changeOrigin: true
+            }
+        }
+    }
+}
+```
+
+## `vue-router`使用
+1. 安装 `yarn add vue-router`

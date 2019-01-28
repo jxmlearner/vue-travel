@@ -1,0 +1,23 @@
+{
+    "iconList": [
+        {"id":"0001","title":"景点门票","imgUrl":"http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png"},
+        {"id":"0002","title":"一日游","imgUrl":"http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png"},
+        {"id":"0003","title":"深圳必游","imgUrl":"http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png"},
+        {"id":"0004","title":"海洋馆","imgUrl":"http://img1.qunarzz.com/piao/fusion/1803/50/26ffa31b56646402.png"},
+        {"id":"0005","title":"动植物园","imgUrl":"http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png"},
+        {"id":"0006","title":"泡温泉","imgUrl":"http://img1.qunarzz.com/piao/fusion/1803/ab/6f7d6e44963c9302.png"},
+        {"id":"0007","title":"世界之窗","imgUrl":"http://img1.qunarzz.com/piao/fusion/1803/a6/6d97515091789602.png"},
+        {"id":"0008","title":"滑雪秀","imgUrl":"http://img1.qunarzz.com/piao/fusion/1803/fc/b10a6b2e4f0fe102.png"},
+        {"id":"0009","title":"东部华侨城","imgUrl":"http://img1.qunarzz.com/piao/fusion/1803/b6/37560ece9c62b502.png"}
+    ],
+    "likeList": [
+        {"id": "0001", "title": "深圳野生动物园", "imgUrl":"http://img1.qunarzz.com/sight/p0/1508/2e/d9363ce50a88c8c5ff5a138c67687cd4.water.jpg_200x200_1c15c8f5.jpg", 
+        "commentNum":16129, "price":155, "stars": 5, "area":"小梅沙"},
+        {"id": "0002", "title": "八达岭长城", "imgUrl":"http://img1.qunarzz.com/sight/p0/1708/2b/2b3b94de99c0a425a3.img.jpg_200x200_2458ffb2.jpg", 
+        "commentNum":44155, "price":157.5, "stars": 4, "area":"延庆县"}
+    ],
+    "weekendList": [
+        {"id": "0001", "title": "清远周边逛", "imgUrl":"http://img1.qunarzz.com/sight/source/1811/15/66f14e0fd6fbb.jpg_r_640x214_5d69f21d.jpg","desc":"人人都有一双发现美的眼睛，身边的事物最熟悉不过，那你可曾发现了被人遗漏的美？"},
+        {"id": "0002", "title": "浮在海上的绿洲", "imgUrl":"http://img1.qunarzz.com/sight/source/1811/b8/5d599bbdcf8b57.jpg_r_640x214_2ee055e3.jpg","desc":"南国滨海之城，避寒胜地，有暖暖的阳光，海风习习，吃着海鲜逛逛老街多惬意啊"}
+    ]
+}

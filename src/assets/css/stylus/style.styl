@@ -3,6 +3,13 @@ html {
 }
 body {
     font-size: .28rem;
+    font-family: Arial,"Microsoft Yahei","Helvetica Neue",Helvetica,sans-serif;
+}
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .gray-split {
@@ -28,3 +35,21 @@ body {
         line-height: .44rem;
     }
 }
+
+
+
+//<!--根据媒体查询@media设置不同的缩放比例(transform 的 scale)来修复1像素边框的问题-->
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)
+  .border-1px
+  //<!--使用伪元素::after--> 
+    &::after 
+    //<!--dpr是1.5的时候缩放0.7倍-->
+      -webkit-transform: scaleY(0.7) 
+      transform: scaleY(0.7)
+
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2)
+  .border-1px
+    &::after
+    //<!--dpr是2的时候缩放0.5倍-->
+      -webkit-transform: scaleY(0.5) 
+      transform: scaleY(0.5)

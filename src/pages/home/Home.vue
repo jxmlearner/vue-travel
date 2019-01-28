@@ -4,6 +4,7 @@
         <home-swiper />
         <home-icons />
         <home-recommend />
+        <home-weekend />
     </div>
 </template>
 
@@ -12,6 +13,7 @@
     import HomeSwiper from './components/Swiper'
     import HomeIcons from './components/Icons'
     import HomeRecommend from './components/Recommend'
+    import HomeWeekend from './components/Weekend'
 
     export default {
         mounted() {
@@ -21,7 +23,8 @@
             HomeHeader,
             HomeSwiper,
             HomeIcons,
-            HomeRecommend
+            HomeRecommend,
+            HomeWeekend
         }
     }
 </script>

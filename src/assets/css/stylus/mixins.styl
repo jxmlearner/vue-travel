@@ -15,6 +15,17 @@ border-1px($color) //stylus的mixins语法支持传入变量
     border-top: 1px solid $color //因为是在元素之后插入,所以是用上边框
     content: ' ' //after或者before使用的时候,不传入东西也要填一个空字符串
 
+border-top1px($color)
+    position: relative
+    &::before //使用伪元素::after,在元素之后插入内容
+        display: block
+        position: absolute
+        left: 0
+        top: 0
+        width: 100% //需要横向撑开边框宽度
+        border-bottom: 1px solid $color //因为是在元素之后插入,所以是用上边框
+        content: '' 
+
 //这里是负责图片的不同dpr下显示高清问题
 bg-image($url) //这是图片的mixin,也是类似,不过这里是图片根据dpr来进行适配
   background-image: url($url + "@2x.png")

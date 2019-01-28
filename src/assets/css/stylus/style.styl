@@ -46,10 +46,18 @@ body {
     //<!--dpr是1.5的时候缩放0.7倍-->
       -webkit-transform: scaleY(0.7) 
       transform: scaleY(0.7)
+  .border-top1px
+    &::before
+      -webkit-transform: scaleY(0.7)
+      transform: scaleY(0.7)
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2)
   .border-1px
     &::after
     //<!--dpr是2的时候缩放0.5倍-->
       -webkit-transform: scaleY(0.5) 
+      transform: scaleY(0.5)
+  .border-top1px
+    &::before
+      -webkit-transform: scaleY(0.5)
       transform: scaleY(0.5)

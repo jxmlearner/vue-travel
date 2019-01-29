@@ -332,14 +332,34 @@ new Vue({
 4. `App.vue`修改成使用路由插座
 ```javascript
 <template>
-	<div id="app">
-    <router-view></router-view>
-  </div>
+    <div id="app">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
 export default {
 	name: 'app'
 }
+</script>
+```
+
+## 六、`better-scroll`使用
+1. 安装：`yarn add better-scroll`  [better-scroll github](https://github.com/ustbhuangyi/better-scroll)  [中文文档](https://github.com/ustbhuangyi/better-scroll/blob/master/README_zh-CN.md)
+2. 使用：
+```javascript
+<template>
+    <div class="list" ref="wrapper">
+        <div>...</div>  <!--注意：better-scroll 只处理容器（wrapper）的第一个子元素（content）的滚动，其它的元素都会被忽略-->
+    </div>
+</template>
+<script>
+    import BScroll from 'better-scroll'
+    export default {
+        name: 'CityList',
+        mounted() {
+            this.scroll = new BScroll(this.$refs.wrapper)
+        }
+    }
 </script>
 ```

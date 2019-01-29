@@ -1436,7 +1436,7 @@ babel-plugin-transform-vue-jsx@^4.0.1:
 
 babel-runtime@^6.0.0:
   version "6.26.0"
-  resolved "http://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
   dependencies:
     core-js "^2.4.0"
@@ -1479,8 +1479,8 @@ bcrypt-pbkdf@^1.0.0:
 
 better-scroll@^1.14.1:
   version "1.14.1"
-  resolved "http://registry.npm.taobao.org/better-scroll/download/better-scroll-1.14.1.tgz#65109c502a750d49543ffbb4208f421b33705c2f"
-  integrity sha1-ZRCcUCp1DUlUP/u0II9CGzNwXC8=
+  resolved "https://registry.yarnpkg.com/better-scroll/-/better-scroll-1.14.1.tgz#65109c502a750d49543ffbb4208f421b33705c2f"
+  integrity sha512-WWNkxiJgzwl8ITIH9pmU7D00QJaJRB59nDED+UrLPPASMj9sISpNLTgYrh+LsOOpGB9xezzKy0Bklw1K1vorHQ==
   dependencies:
     babel-runtime "^6.0.0"
 
@@ -2201,8 +2201,8 @@ copy-webpack-plugin@^4.6.0:
 
 core-js@^2.4.0:
   version "2.6.3"
-  resolved "http://registry.npm.taobao.org/core-js/download/core-js-2.6.3.tgz#4b70938bdffdaf64931e66e2db158f0892289c49"
-  integrity sha1-S3CTi9/9r2STHmbi2xWPCJIonEk=
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.3.tgz#4b70938bdffdaf64931e66e2db158f0892289c49"
+  integrity sha512-l00tmFFZOBHtYhN4Cz7k32VM7vTn3rE2ANjQDxdEN6zmXZ/xq1jQuutnmHvMG1ZJ7xd72+TA5YpUK8wz3rWsfQ==
 
 core-js@^2.5.7, core-js@^2.6.1:
   version "2.6.2"
@@ -6318,8 +6318,8 @@ regenerate@^1.2.1, regenerate@^1.4.0:
 
 regenerator-runtime@^0.11.0:
   version "0.11.1"
-  resolved "http://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
-  integrity sha1-vgWtf5v30i4Fb5cmzuUBf78Z4uk=
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
+  integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
 regenerator-runtime@^0.12.0:
   version "0.12.1"
@@ -7770,6 +7770,11 @@ vue@^2.5.21:
   version "2.5.22"
   resolved "http://registry.npm.taobao.org/vue/download/vue-2.5.22.tgz#3bf88041af08b8539c37b268b70ca79245e9cc30"
   integrity sha1-O/iAQa8IuFOcN7JotwynkkXpzDA=
+
+vuex@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.1.0.tgz#634b81515cf0cfe976bd1ffe9601755e51f843b9"
+  integrity sha512-mdHeHT/7u4BncpUZMlxNaIdcN/HIt1GsGG5LKByArvYG/v6DvHcOxvDCts+7SRdCoIRGllK8IMZvQtQXLppDYg==
 
 watchpack@^1.5.0:
   version "1.6.0"

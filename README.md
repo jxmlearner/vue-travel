@@ -345,7 +345,7 @@ export default {
 ```
 
 ## 六、`better-scroll`使用
-1. 安装：`yarn add better-scroll`  [better-scroll github](https://github.com/ustbhuangyi/better-scroll)  [中文文档](https://github.com/ustbhuangyi/better-scroll/blob/master/README_zh-CN.md)
+1. 安装：`yarn add better-scroll`  [better-scroll github](https://github.com/ustbhuangyi/better-scroll)  [文档](https://ustbhuangyi.github.io/better-scroll/doc/)
 2. 使用：
 ```javascript
 <template>
@@ -359,6 +359,79 @@ export default {
         name: 'CityList',
         mounted() {
             this.scroll = new BScroll(this.$refs.wrapper)
+        }
+    }
+</script>
+```
+
+## 七、字母表组件和城市列表组件两兄弟组件之间的通讯
+1. 字母表组件中 `$emit`一个事件给`City`父组件
+```javascript
+<template>
+    <ul class="list">
+        <li class="item" v-for="(item,key) of cities" :key="key" @click="handleLetterChange">{{key}}</li>
+    </ul>
+</template>
+
+<script>
+    export default {
+        name: 'CityAlphabet',
+        props: {
+            cities: Object
+        },
+        methods: {
+            handleLetterChange(e) {
+                let letter = e.target.innerText
+                this.$emit('change',letter)
+            }
+        }
+    }
+</script>
+```
+2. `City`组件监听上面的事件，把值赋给自身的一个data值
+```javascript
+<city-list :cities="cities" :hot="hotCities" :letter="letter"/>
+<city-alphabet :cities="cities" @change="handleLetterChange" />
+
+methods: {
+    ...
+    handleLetterChange(letter) {
+        this.letter = letter
+    }
+}
+```
+3. 城市列表组件中接收并监听letter的变化
+```javascript
+<template>
+<div class="area" v-for="(item,key) of cities" :key="key" :ref="key">
+    <div class="title border-top1px border-1px">{{key}}</div>
+    <div class="item-list">
+        <div class="item border-1px" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
+    </div>
+</div>
+</template>
+<script>
+    import BScroll from 'better-scroll'
+    export default {
+        name: 'CityList',
+        props: {
+            cities:Object,
+            hot: {
+                type: Array,
+                default: function() { return [] }
+            },
+            letter: String
+        },
+        mounted() {
+            this.scroll = new BScroll(this.$refs.wrapper)
+        },
+        watch: {
+            letter() {
+                if(this.letter) {
+                    let element = this.$refs[this.letter][0]   //注意这里,因为这个ref是 v-for出来的, this.$refs['A']是个数组,要加个[0]索引
+                    this.scroll.scrollToElement(element)
+                }
+            }
         }
     }
 </script>

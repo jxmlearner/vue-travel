@@ -17,7 +17,7 @@
                     </div> 
                 </div>
             </div>
-            <div class="area" v-for="(item,key) of cities" :key="key">
+            <div class="area" v-for="(item,key) of cities" :key="key" :ref="key">
                 <div class="title border-top1px border-1px">{{key}}</div>
                 <div class="item-list">
                     <div class="item border-1px" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
@@ -36,10 +36,19 @@
             hot: {
                 type: Array,
                 default: function() { return [] }
-            }
+            },
+            letter: String
         },
         mounted() {
             this.scroll = new BScroll(this.$refs.wrapper)
+        },
+        watch: {
+            letter() {
+                if(this.letter) {
+                    let element = this.$refs[this.letter][0]   //注意这里,因为这个ref是 v-for出来的, this.$refs['A']是个数组,要加个[0]索引
+                    this.scroll.scrollToElement(element)
+                }
+            }
         }
     }
 </script>

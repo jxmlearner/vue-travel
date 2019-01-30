@@ -20,7 +20,7 @@
             <div class="area" v-for="(item,key) of cities" :key="key" :ref="key">
                 <div class="title border-top1px border-1px">{{key}}</div>
                 <div class="item-list">
-                    <div class="item border-1px" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
+                    <div class="item border-1px" v-for="innerItem of item" :key="innerItem.id" @click="handleChangeCity($event,innerItem.name)">{{innerItem.name}}</div>
                 </div>
             </div>
         </div>
@@ -52,6 +52,7 @@
             handleChangeCity(event,cityName) {
                 if(event._constructed) { 
                     this.changeCity(cityName)
+                    this.$router.push('/')
                 }                
             },
             ...mapActions(['changeCity'])

@@ -5,11 +5,12 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        city: '深圳'
+        city: localStorage.getItem('city')||'深圳'
     },
     mutations: {
         changeCity(state,city) {
             state.city = city
+            localStorage.setItem('city',city)
         }
     },
     actions: {

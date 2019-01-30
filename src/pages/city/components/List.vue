@@ -5,14 +5,14 @@
                 <div class="title border-top1px border-1px">当前城市</div>
                 <div class="button-list">
                     <div class="button-wrapper">
-                        <div class="button">深圳</div>
+                        <div class="button">{{city}}</div>
                     </div> 
                 </div>
             </div>
             <div class="area">
                 <div class="title border-top1px border-1px">热门城市</div>
                 <div class="button-list">
-                    <div class="button-wrapper" v-for="city of hot" :key="city.spell">
+                    <div class="button-wrapper" v-for="city of hot" :key="city.spell" @click="handleChangeCity($event,city.name)">
                         <div class="button">{{city.name}}</div>
                     </div> 
                 </div>
@@ -29,6 +29,7 @@
 
 <script>
     import BScroll from 'better-scroll'
+    import { mapState, mapActions } from 'vuex'
     export default {
         name: 'CityList',
         props: {
@@ -39,8 +40,21 @@
             },
             letter: String
         },
+        computed: {
+            ...mapState(['city'])
+        },
         mounted() {
-            this.scroll = new BScroll(this.$refs.wrapper)
+            this.scroll = new BScroll(this.$refs.wrapper, {
+                click: true  // better-scroll 默认会阻止浏览器的原生 click 事件。当设置为 true，better-scroll 会派发一个 click 事件，我们会给派发的 event 参数加一个私有属性 _constructed，值为 true
+            })
+        },
+        methods: {
+            handleChangeCity(event,cityName) {
+                if(event._constructed) { 
+                    this.changeCity(cityName)
+                }                
+            },
+            ...mapActions(['changeCity'])
         },
         watch: {
             letter() {

@@ -7,14 +7,18 @@
             </a>
         </div>
         <router-link class="head-city" to="/city">
-            <span>深圳<i class="icon iconfont icon-caret-down"></i></span>   
+            <span>{{city}}<i class="icon iconfont icon-caret-down"></i></span>   
         </router-link>
     </div>
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     export default {
-        name: 'homeHeader'
+        name: 'homeHeader',
+        computed: {
+            ...mapState(['city'])
+        }
     }
 </script>
 

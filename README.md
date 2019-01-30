@@ -502,3 +502,109 @@ methods: {
     }
 </script>
 ```
+
+## 九、使用`vuex`状态同步首页和城市页的当前城市数据
+1. 安装： `yarn add vuex`
+2. store仓库： `src/store/store.js`
+```javascript
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+    state: {
+        city: '深圳'
+    },
+    mutations: {
+        changeCity(state,city) {
+            state.city = city
+        }
+    },
+    actions: {
+        changeCity({commit},city) {
+            commit('changeCity',city)  // commit changeCity mutation
+        }
+    }
+})
+
+export default store
+```
+3. `main.js`中全局注入`store`
+```javascript
+import store from './store/store'
+
+new Vue({
+  router,
+  store,
+  render: h => h(App),
+}).$mount('#app')
+```
+4. 首页`pages/home/components/Header.vue`组件中使用 `state.city`
+```javascript
+/*
+    <template>...
+        <router-link class="head-city" to="/city">
+            <span>{{city}}<i class="icon iconfont icon-caret-down"></i></span>   
+        </router-link>
+    </template
+*/
+<script>
+    import {mapState} from 'vuex'
+    export default {
+        name: 'homeHeader',
+        computed: {
+            ...mapState(['city'])
+        }
+    }
+</script>
+```
+5. 城市列表组件`pages/city/components/List.vue`中调用action
+```javascript
+/*
+    <template>...
+        <div class="button-wrapper" v-for="city of hot" :key="city.spell" @click="handleChangeCity($event,city.name)">
+            <div class="button">{{city.name}}</div>
+        </div> 
+    </template>
+*/
+<script>
+    import BScroll from 'better-scroll'
+    import { mapState, mapActions } from 'vuex'
+    export default {
+        name: 'CityList',
+        props: {
+            cities:Object,
+            hot: {
+                type: Array,
+                default: function() { return [] }
+            },
+            letter: String
+        },
+        computed: {
+            ...mapState(['city'])
+        },
+        mounted() {
+            this.scroll = new BScroll(this.$refs.wrapper, {
+                click: true  // better-scroll 默认会阻止浏览器的原生 click 事件。当设置为 true，better-scroll 会派发一个 click 事件，我们会给派发的 event 参数加一个私有属性 _constructed，值为 true
+            })
+        },
+        methods: {
+            handleChangeCity(event,cityName) {
+                if(event._constructed) { 
+                    this.changeCity(cityName)
+                }                
+            },
+            ...mapActions(['changeCity'])
+        },
+        watch: {
+            letter() {
+                if(this.letter) {
+                    let element = this.$refs[this.letter][0]   //注意这里,因为这个ref是 v-for出来的, this.$refs['A']是个数组,要加个[0]索引
+                    this.scroll.scrollToElement(element)
+                }
+            }
+        }
+    }
+</script>
+```

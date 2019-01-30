@@ -1,7 +1,7 @@
 import axios from '../utils/http'
 
-async function getHomeInfo() {
-    return await axios.get('index.json')
+async function getHomeInfo(curCity) {
+    return await axios.get('index.json?city='+curCity)
 }
 
 export default {

@@ -608,3 +608,36 @@ new Vue({
     }
 </script>
 ```
+
+## 十、`keep-alive`使页面缓存起来，只有当页面数据需要改变的时候才去异步获取数据
+- 首先路由插座上要套上`keep-alive`
+```html
+<div id="app">
+    <keep-alive>
+        <router-view></router-view>
+    </keep-alive>
+</div>
+```
+- `Home.vue`组件中定义一data  lastCity保存上一次的城市(默认是''),在mounted生命周期中为其赋值
+```javascript
+mounted() {
+    this.lastCity = this.city
+    this.getHomeInfo()
+},
+```
+- 获取数据的url更改成带上当前城市的参数
+```javascript
+async function getHomeInfo(curCity) {
+    return await axios.get('index.json?city='+curCity)
+}
+```
+- 在`activated`生命周期函数中判断当前城市和上一次城市是否相同,不相同就重新去取数据
+```javascript
+activated() {
+    if(this.lastCity === this.city) { // 还是原来的城市,直接return,不去请求数据
+        return
+    }
+    this.lastCity = this.city  // 当前城市已经变了,所以也赋值给lastCity
+    this.getHomeInfo()
+},
+```

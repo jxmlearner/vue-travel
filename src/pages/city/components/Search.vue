@@ -14,7 +14,7 @@
 
 <script>
     import BScroll from 'better-scroll'
-    import { mapState, mapActions } from 'vuex'
+    import { mapActions } from 'vuex'
     export default {
         name: 'CitySearch',
         data() {

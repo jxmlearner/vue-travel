@@ -502,5 +502,3 @@ methods: {
     }
 </script>
 ```
-## 九、使用`vuex`状态同步首页和城市选择页下的当前城市
-1. 安装 `yarn add vuex`

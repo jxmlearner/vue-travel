@@ -6,7 +6,7 @@
             <span class="mp-title">猜你喜欢</span>
         </h2>
         <ul class="mp-like-list">
-            <li class="mp-like-item border-1px" v-for="item of likeList" :key="item.id">
+            <router-link tag="li" :to="'/detail/'+item.id" class="mp-like-item border-1px" v-for="item of likeList" :key="item.id">
                 <div class="img-box">
                     <img class="mp-like-img" :src="item.imgUrl" :alt="item.title">
                 </div>
@@ -23,7 +23,7 @@
                         起<span class="mp-like-address">{{item.area}}</span>
                     </div>
                 </div>
-            </li>
+            </router-link>
         </ul>
     </div>
 </template>

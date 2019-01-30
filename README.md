@@ -641,3 +641,45 @@ activated() {
     this.getHomeInfo()
 },
 ```
+
+## 十一、详情页导航条随页面上下滚动的渐隐渐现效果
+```javascript
+<template>
+    <div class="header">
+        <router-link to="/" class="header-abc" v-show="showAbs"><i class="icon iconfont icon-left"></i></router-link>
+        <div class="header-fixed" v-show="!showAbs" :style="opacityStyle">
+            <router-link tag="div" class="header-back" to="/"><i class="icon iconfont icon-left"></i></router-link>
+            景点详情
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                showAbs: true,
+                opacityStyle: {
+                    opaticy: 0
+                }
+            }
+        },
+        methods: {
+            handleScroll() {
+                const top = document.documentElement.scrollTop
+                if(top> 60) {
+                    let opacity = top / 140
+                    opacity = opacity>=1? 1: opacity
+                    this.opacityStyle = { opacity }
+                    this.showAbs = false
+                }else {
+                    this.showAbs = true
+                }
+            }
+        },
+        activated() {
+            window.addEventListener('scroll',this.handleScroll)            
+        }
+    }
+</script>
+```

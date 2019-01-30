@@ -20,6 +20,7 @@
         },
         methods: {
             handleScroll() {
+                console.log('scroll')
                 const top = document.documentElement.scrollTop
                 if(top> 60) {
                     let opacity = top / 140
@@ -33,6 +34,9 @@
         },
         activated() {
             window.addEventListener('scroll',this.handleScroll)            
+        },
+        deactivated() {  //对全局监听事件进行移除
+            window.removeEventListener('scroll',this.handleScroll)
         }
     }
 </script>

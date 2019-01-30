@@ -683,3 +683,9 @@ activated() {
     }
 </script>
 ```
+- 切换到别的页面时要对注册在window上的事件进行移除
+```javascript
+deactivated() {  //对全局监听事件进行移除
+    window.removeEventListener('scroll',this.handleScroll)
+}
+```

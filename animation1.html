@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS3 animation动画焦点图</title>
+    <style type="text/css">
+    * { margin:0; padding: 0;}
+    html,body {height: 100%;}
+    .wrap {
+        width: 100%; 
+        height: 100%; 
+        position: relative;
+        overflow: hidden;
+    }
+    .wrap>img {
+        width: 100%; 
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top:0;
+    }
+    .wrap :target {
+        z-index: 10;
+    }
+    .smImgUl {
+        position: absolute;
+        bottom: 50px;  
+        width: 100%;
+        text-align: center;    
+        z-index: 20;
+    }
+    .smImgUl>li {
+        display: inline-block;
+        width: 100px; 
+        height: 100px;
+        border: 10px solid rgba(255,255,255,0.5);
+        margin: 0 10px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .smImgUl>li img{
+        width: 100%;
+        height: 100%;
+    }    
+    .smImgUl>li:hover {
+        border-color: #f60;
+    }
+    .smImgUl>li:hover img {
+        animation: rotate360 3s linear infinite forwards;
+    }
+
+    @keyframes rotate360 {
+        0% {}
+        100% {
+            transform: rotate(360deg)
+        }
+    }
+    #img1:target {
+        animation: slideLeft 1s;
+    }
+    @keyframes slideLeft {
+        0% {
+            transform: translate(-500px);
+        }
+        100% {
+            transform: translate(0px);
+        }
+    }
+    #img2:target {
+        animation: slideTop 1s;
+    }
+    @keyframes slideTop {
+        0% {
+            transform: translate(0,-500px);
+        }
+        100% {
+            transform: translate(0,0);
+        }
+    }
+    #img3:target {
+        animation: zoomIn 1s;
+    }
+    @keyframes zoomIn {
+        0% {
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    #img4:target {
+        animation: zoomOut 1s;
+    }
+    @keyframes zoomOut {
+        0% {
+            transform: scale(2);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    #img5:target {
+        animation: rotate 1s;
+    }
+    @keyframes rotate {
+        0% {
+            transform: scale(0) rotate(0deg);
+        }
+        100% {
+            transform: scale(1) rotate(360deg);
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <img src="imgs/img1.jpg" id="img1" />
+        <img src="imgs/img2.jpg" id="img2" />
+        <img src="imgs/img3.jpg" id="img3" />
+        <img src="imgs/img4.jpg" id="img4" />
+        <img src="imgs/img5.jpg" id="img5" />
+        <ul class="smImgUl">
+            <li><a href="#img1"><img src="imgs/img1.jpg" /></a></li>
+            <li><a href="#img2"><img src="imgs/img2.jpg" /></a></li>
+            <li><a href="#img3"><img src="imgs/img3.jpg" /></a></li>
+            <li><a href="#img4"><img src="imgs/img4.jpg" /></a></li>
+            <li><a href="#img5"><img src="imgs/img5.jpg" /></a></li>
+        </ul>
+    </div>
+</body>
+</html>

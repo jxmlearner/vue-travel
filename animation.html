@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS3 animation</title>
+    <style type="text/css">
+        *{margin:0; padding:0;}
+
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #f60;
+            margin: 100px auto;
+        }
+        .btns {
+            text-align: center;
+        }
+
+        @keyframes move {
+            0% { }
+            33% { transform: translate(0,100px);}
+            66% { transform: translate(200px, 200px);}
+            100% { transform: translate(200px, 0);}
+        }
+
+        .animated {
+            animation: move 5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="btns">
+        <button id="btn">添加动画</button>
+        <button id="btnRemove">移除动画</button>
+    </div>    
+    <script>
+        document.querySelector('#btn').addEventListener('click',function(){
+            let box = document.querySelector('.box')
+            box.classList.add('animated')
+        },false)
+        document.querySelector('#btnRemove').addEventListener('click',function(){
+            let box = document.querySelector('.box')
+            box.classList.remove('animated')
+        },false)
+    </script>
+</body>
+</html>
